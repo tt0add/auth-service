@@ -3,7 +3,6 @@ from sqlalchemy import create_engine
 from dotenv import load_dotenv
 import os
 
-
 load_dotenv()
 
 DATABASE_URL = os.getenv('DATABASE_URL')
@@ -13,7 +12,7 @@ engine = create_engine(DATABASE_URL)
 SessionLocal = sessionmaker(engine)
 Base = declarative_base()
 
-def get_db():
+def get_db(): # Создаем подключение к БД
     db = SessionLocal()
     try:
         yield db
