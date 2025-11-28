@@ -30,3 +30,13 @@ def crud_login_user(db: Session, user: UserLoginSchema):
         return get_user
     else:
         raise UserIncorrectPassword()
+    
+
+def crud_get_user(db: Session, user_id: int):
+    user = db.query(models.User).filter(models.User.id == user_id).first()
+
+    if user is None:
+        raise UserNotExists()
+
+
+    return user
