@@ -1,10 +1,10 @@
 from database.db import Base
-from sqlalchemy import Column, String, Integer
+from sqlalchemy.orm import Mapped, mapped_column
 
 class User(Base):
     __tablename__ = 'users'
 
-    id = Column(Integer, primary_key=True)
-    email = Column(String, unique=True) # Каждый email пользователя должен быть уникальным
-    password = Column(String)
-    role = Column(String)
+    id: Mapped[int] = mapped_column(primary_key=True)
+    email: Mapped[str] = mapped_column(unique=True) # Каждый email пользователя должен быть уникальным
+    password: Mapped[str] = mapped_column()
+    role: Mapped[str] = mapped_column()
