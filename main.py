@@ -10,7 +10,7 @@ app.include_router(auth_router)
 
 @app.on_event("startup")
 async def startup():
-    redis = Redis(host="localhost", port=6379, db=0)
-    await FastAPILimiter.init(redis)
+    redis_conn = Redis.from_url("redis://redis:6379", encoding="utf-8", decode_responses=True)
+    await FastAPILimiter.init(redis_conn)
 
 Base.metadata.create_all(engine)
